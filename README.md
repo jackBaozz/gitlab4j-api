@@ -8,7 +8,7 @@
 GitLab4J&trade; API (gitlab4j-api) provides a full featured and easy to consume Java library for working with GitLab repositories via the GitLab REST API.  Additionally, full support for working with GitLab webhooks and system hooks is also provided.
 
 ---
-## Table of Contents
+## 目录
 * [GitLab Server Version Support](#gitLab-server-version-support)<br/>
 * [Using GitLab4J-API](#using-gitlab4j-api)<br/>
   * [Java 8 Requirement](#java-8-requirement)<br/>
@@ -29,26 +29,26 @@ GitLab4J&trade; API (gitlab4j-api) provides a full featured and easy to consume 
   * [Available Sub APIs](#available-sub-apis)
 
 ---
-## GitLab Server Version Support
+## GitLab服务的版本支持
 
 GitLab4J-API supports version 11.0+ of GitLab Community Edition [(gitlab-ce)](https://gitlab.com/gitlab-org/gitlab-ce/) and GitLab Enterprise Edition [(gitlab-ee)](https://gitlab.com/gitlab-org/gitlab-ee/). 
 
 GitLab released GitLab Version 11.0 in June of 2018 which included many major changes to GitLab.  If you are using GitLab server earlier than version 11.0, it is highly recommended that you either update your GitLab install or use a version of this library that was released around the same time as the version of GitLab you are using. 
 
-**NOTICE**:  
+**注意**:  
 As of GitLab 11.0 support for the GitLab API v3 has been removed from the GitLab server (see https://about.gitlab.com/2018/06/01/api-v3-removal-impending/). Support for GitLab API v3 will be removed from this library sometime in 2019. If you are utilizing the v3 support, please update your code to use GitLab API v4.
 
 ---
-## Using GitLab4J-API
+## 如何使用 GitLab4J-API
 
-### **Java 8 Requirement**
+### **要求Java 8**
 As of GitLab4J-API 4.8.0, Java 8+ is now required to use GitLab4J-API.
 
-### **Javadocs**
+### **Java文档**
 Javadocs are available here: [![javadoc.io](https://javadoc.io/badge2/org.gitlab4j/gitlab4j-api/javadoc.io.svg)](https://javadoc.io/doc/org.gitlab4j/gitlab4j-api)
 
 
-### **Project Set Up**
+### **项目设置**
 To utilize GitLab4J&trade; API in your Java project, simply add the following dependency to your project's build file:<br /> 
 **Gradle: build.gradle**
 ```java
