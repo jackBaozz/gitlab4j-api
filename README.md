@@ -80,27 +80,27 @@ There have been reports of problems resolving some dependencies when using Ivy o
 
 GitLab4J-API is quite simple to use, all you need is the URL to your GitLab server and the Personal Access Token from your GitLab Account Settings page.  Once you have that info it is as simple as:
 ```java
-// Create a GitLabApi instance to communicate with your GitLab server
+// 创建一个GitLabApi实例与GitLab服务器进行通信
 GitLabApi gitLabApi = new GitLabApi("http://your.gitlab.server.com", "YOUR_PERSONAL_ACCESS_TOKEN");
 
-// Get the list of projects your account has access to
+// 获取您的账户可以访问的项目列表
 List<Project> projects = gitLabApi.getProjectApi().getProjects();
 ```
 
-You can also login to your GitLab server with username, and password:
+你也可以用用户名和密码登录到你的GitLab服务器:
 ```java
 // Log in to the GitLab server using a username and password
 GitLabApi gitLabApi = GitLabApi.oauth2Login("http://your.gitlab.server.com", "username", "password");
 ```
 在GitLab4J-API 4.6.6 版本中，所有的API请求都支持像其他用户一样执行API调用，前提是你是管理员:
 ```java
-// Create a GitLabApi instance to communicate with your GitLab server (must be an administrator)
+// 创建一个GitLabApi实例来与GitLab服务器通信（必须是管理员）
 GitLabApi gitLabApi = new GitLabApi("http://your.gitlab.server.com", "YOUR_PERSONAL_ACCESS_TOKEN");
 
-// sudo as as a different user, in this case the user named "johndoe", all future calls will be done as "johndoe"
+// sudo为不同的用户，本例中的用户名为 "johndoe"，以后所有的调用都将以 "johndoe "的身份进行。
 gitLabApi.sudo("johndoe")
 
-// To turn off sudo mode
+// 要关闭sudo模式
 gitLabApi.unsudo();
 ```
 
