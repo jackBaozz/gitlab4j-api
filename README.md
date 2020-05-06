@@ -58,7 +58,7 @@ dependencies {
 }
 ```
 
-**NOTE:** Pulling dependencies may fail when using Gradle prior to 4.5. See [Gradle issue 3065](https://github.com/gradle/gradle/issues/3065#issuecomment-364092456)
+**NOTE:** 在使用4.5之前的Gradle时，拉取依赖关系可能会失败。. See [Gradle issue 3065](https://github.com/gradle/gradle/issues/3065#issuecomment-364092456)
 
 **Maven: pom.xml**
 ```xml
@@ -76,7 +76,7 @@ There have been reports of problems resolving some dependencies when using Ivy o
 
 ---
 
-### **Usage Examples**
+### **使用实例**
 
 GitLab4J-API is quite simple to use, all you need is the URL to your GitLab server and the Personal Access Token from your GitLab Account Settings page.  Once you have that info it is as simple as:
 ```java
@@ -92,7 +92,7 @@ You can also login to your GitLab server with username, and password:
 // Log in to the GitLab server using a username and password
 GitLabApi gitLabApi = GitLabApi.oauth2Login("http://your.gitlab.server.com", "username", "password");
 ```
-As of GitLab4J-API 4.6.6, all API requests support performing the API call as if you were another user, provided you are authenticated as an administrator:
+在GitLab4J-API 4.6.6 版本中，所有的API请求都支持像其他用户一样执行API调用，前提是你是管理员:
 ```java
 // Create a GitLabApi instance to communicate with your GitLab server (must be an administrator)
 GitLabApi gitLabApi = new GitLabApi("http://your.gitlab.server.com", "YOUR_PERSONAL_ACCESS_TOKEN");
@@ -105,8 +105,8 @@ gitLabApi.unsudo();
 ```
 
 ---
-### **Setting Request Timeouts**
-As of GitLab4J-API 4.14.21 support has been added for setting the conect and read timeouts for the API client:
+### **设置请求超时**
+从 GitLab4J-API 4.14.21开始，增加了对API客户端的连接和读取超时设置的支持。:
 ```java
 GitLabApi gitLabApi = new GitLabApi("http://your.gitlab.com", "YOUR_PERSONAL_ACCESS_TOKEN", proxyConfig);
 
@@ -115,8 +115,8 @@ gitLabApi.setRequestTimeout(1000, 5000);
 ```
 
 ---
-### **Connecting Through a Proxy Server**
-As of GitLab4J-API 4.8.2 support has been added for connecting to the GitLab server using an HTTP proxy server:
+### **通过代理服务器连接**
+从GitLab4J-API 4.8.2开始，增加了对使用HTTP代理服务器连接到GitLab服务器的支持。:
 ```java
 // Log in to the GitLab server using a proxy server (with basic auth on proxy)
 Map<String, Object> proxyConfig = ProxyClientConfig.createProxyClientConfig(
@@ -127,29 +127,31 @@ GitLabApi gitLabApi = new GitLabApi("http://your.gitlab.com", "YOUR_PERSONAL_ACC
 Map<String, Object> proxyConfig = ProxyClientConfig.createProxyClientConfig("http://your-proxy-server");
 GitLabApi gitLabApi = new GitLabApi("http://your.gitlab.com", "YOUR_PERSONAL_ACCESS_TOKEN", null, proxyConfig);
 
-// Log in to the GitLab server using an NTLM (Windows DC) proxy
+// Log in to the GitLab server using an NTLM (Windows DC Microsoft安全协议) proxy
 Map<String, Object> ntlmProxyConfig = ProxyClientConfig.createNtlmProxyClientConfig(
         "http://your-proxy-server", "windows-username", "windows-password", "windows-workstation", "windows-domain");
 GitLabApi gitLabApi = new GitLabApi("http://your.gitlab.com", "YOUR_PERSONAL_ACCESS_TOKEN", null, ntlmProxyConfig);
 ```
-See the Javadoc on the GitLabApi class for a complete list of methods accepting the proxy configuration (clientConfiguration parameter)
+关于接受代理配置（clientConfiguration parameter）的完整方法列表，请参见GitLabApi类的Javadoc
 
 ---
 ### **GitLab API V3 and V4 Support**
-As of GitLab4J-API 4.2.0 support has been added for GitLab API V4. If your application requires GitLab API V3,
-you can still use GitLab4J-API by creating your GitLabApi instance as follows:
+从GitLab4J-API 4.2.0开始已经增加了对GitLab API V4的支持。如果您的应用程序需要GitLab API V3。
+您仍然可以通过以下方式创建GitLab4J-API实例来使用GitLab4J-API。:
 ```java
 // Create a GitLabApi instance to communicate with your GitLab server using GitLab API V3
 GitLabApi gitLabApi = new GitLabApi(ApiVersion.V3, "http://your.gitlab.server.com", "YOUR_PRIVATE_TOKEN");
 ```
 
-**NOTICE**:  
-As of GitLab 11.0 support for the GitLab API v3 has been removed from the GitLab server (see https://about.gitlab.com/2018/06/01/api-v3-removal-impending/). Support for GitLab API v3 will be removed from this library sometime in 2019. If you are utilizing the v3 support, please update your code to use GitLab API v4.
+**注意**:  
+从GitLab 11.0开始，GitLab服务器上已经删除了对GitLab API v3的支持（见https://about.gitlab.com/2018/06/01/api-v3-removal-impending/）。对 GitLab API v3 的支持将在 2019 年的某个时候从这个库中删除。如果您正在使用 v3 支持，请更新您的代码以使用 GitLab API v4。
 
 ---
-### **Logging of API Requests and Responses**
+### **记录API请求和响应**
 As of GitLab4J-API 4.8.39 support has been added to log the requests to and the responses from the
-GitLab API.  Enable logging using one of the following methods on the GitLabApi instance:
+GitLab API.  
+在GitLabApi实例上使用以下方法之一启用日志记录:
+
 ```java
 GitLabApi gitLabApi = new GitLabApi("http://your.gitlab.server.com", "YOUR_PERSONAL_ACCESS_TOKEN");
 
@@ -170,9 +172,10 @@ gitLabApi.enableRequestResponseLogging(yourLoggerInstance, java.util.logging.Lev
 ```
 
 ---
-### **Results Paging**
-GitLab4J-API provides an easy to use paging mechanism to page through lists of results from the GitLab API.
-Here are a couple of examples on how to use the Pager:
+### **结果分页**
+GitLab4J-API提供了一个易于使用的分页机制，可以从GitLab API中翻阅结果列表。
+下面是几个关于如何使用分页器的例子。
+
 ```java
 // Get a Pager instance that will page through the projects with 10 projects per page
 Pager<Project> projectPager = gitlabApi.getProjectsApi().getProjects(10);
@@ -185,7 +188,7 @@ while (projectsPager.hasNext())) {
 }
 ```
 
-As of GitLab4J-API 4.9.2, you can also fetch all the items as a single list using a Pager instance:
+从GitLab4J-API 4.9.2开始，你还可以使用Pager实例将所有项目作为一个单独的列表来获取:
 ```java
 // Get a Pager instance so we can load all the projects into a single list, 10 items at a time:
 Pager<Project> projectPager = gitlabApi.getProjectsApi().getProjects(10);
@@ -194,16 +197,16 @@ List<Project> allProjects = projectPager.all();
 
 ---
 ### **Java 8 Stream Support**
-As of GitLab4J-API 4.9.2, all GitLabJ-API methods that return a List result have a similarlly named method that returns a Java 8 Stream.  The Stream returning methods use the following naming convention:  ```getXxxxxStream()```.
+从GitLab4J-API 4.9.2开始，所有返回List结果的GitLabJ-API方法都有一个类似于Java 8的Stream方法。 返回Stream的方法使用以下命名方法:  ```getXxxxxStream()```.
   
 
-**IMPORTANT**  
-The built-in methods that return a Stream do so using ___eager evaluation___, meaning all items are pre-fetched from the GitLab server and a Stream is returned which will stream those items.  **Eager evaluation does NOT support parallel reading of data from ther server, it does however allow for parallel processing of the Stream post data fetch.**
+**重要的**  
+The built-in methods that return a Stream do so using ___eager evaluation___, meaning all items are pre-fetched from the GitLab server and a Stream is returned which will stream those items.  **Eager evaluation不支持从服务器上并行读取数据，但是它允许在数据获取后并行处理Stream.**
 
-To stream using ___lazy evaluation___, use the GitLab4J-API methods that return a ```Pager``` instance, and then call the ```lazyStream()``` method on the ```Pager``` instance to create a lazy evaluation Stream. The Stream utilizes the ```Pager``` instance to page through the available items. **A lazy Stream does NOT support parallel operations or skipping.** 
+To stream using ___lazy evaluation___, use the GitLab4J-API methods that return a ```Pager``` instance, and then call the ```lazyStream()``` method on the ```Pager``` instance to create a lazy evaluation Stream. The Stream utilizes the ```Pager``` instance to page through the available items. **A lazy Stream 不支持并行操作或跳过.** 
 
 
-#### **Eager evaluation example usage:**
+#### **Eager evaluation 用例:**
 
 ```java
 // Stream the visible projects printing out the project name.
@@ -217,7 +220,7 @@ Stream<User> stream = gitlabApi.getUserApi().getUsersStream();
 List<User> users = stream.parallel().sorted(comparing(User::getUsername)).collect(toList());
 ```
 
-#### **Lazy evaluation example usage:**
+#### **Lazy evaluation 用例:**
 
 ```java
 // Get a Pager instance to that will be used to lazily stream Project instances.
@@ -230,8 +233,8 @@ projectPager.lazyStream().limit(5).map(Project::getName).forEach(name -> System.
 
 
 ---
-### **Java 8 Optional Support**
-GitLab4J-API supports Java 8 Optional&lt;T&gt; for API calls that result in the return of a single item. Here is an example on how to use the Java 8 Optional&lt;T&gt; API calls:
+### **Java 8 Optional支持**
+GitLab4J-API supports Java 8 Optional&lt;T&gt; 可实现单项返回. Here is an example on how to use the Java 8 Optional&lt;T&gt; API calls:
 ```java
 Optional<Group> optionalGroup =  gitlabApi.getGroupApi().getOptionalGroup("my-group-path");
 if (optionalGroup.isPresent())
@@ -241,7 +244,7 @@ return gitlabApi.getGroupApi().addGroup("my-group-name", "my-group-path");
 ```
 
 ---
-### **Issue Time Estimates**
+### **发布时间估计**
 GitLab issues allow for time tracking. The following time units are currently available:
 
 * months (mo)
@@ -253,17 +256,17 @@ GitLab issues allow for time tracking. The following time units are currently av
 Conversion rates are 1mo = 4w, 1w = 5d and 1d = 8h. 
 
 ---
-## Making API Calls
-The API has been broken up into sub API classes to make it easier to consume and to separate concerns. The GitLab4J sub API classes typically have a one-to-one relationship with the API documentation at [GitLab API](https://docs.gitlab.com/ce/api/). Following is a sample of the GitLab4J sub API class mapping to the GitLab API documentation:
+## 进行API调用
+为了便于消费，并将关注点分开，API被分解成了子API类。. GitLab4J 子 API 类通常与 [GitLab API](https://docs.gitlab.com/ce/api/)中的 API 文档有一对一的关系。以下是 GitLab4J 子 API 类与 GitLab API 文档的映射示例。:
 
 ```org.gitlab4j.api.GroupApi``` -> https://docs.gitlab.com/ce/api/groups.html<br/>
 ```org.gitlab4j.api.MergeRequestApi``` -> https://docs.gitlab.com/ce/api/merge_requests.html<br/>
 ```org.gitlab4j.api.ProjectApi``` -> https://docs.gitlab.com/ce/api/projects.html<br/>
 ```org.gitlab4j.api.UserApi``` -> https://docs.gitlab.com/ce/api/users.html<br/>
 
-### **Available Sub APIs**
+### **可用的子API (42)**
 
-The following is a list of the available sub APIs along with a sample use of each API. See the <a href="https://javadoc.io/doc/org.gitlab4j/gitlab4j-api" target="_top">Javadocs</a> for a complete list of available methods for each sub API.
+以下是可用的子 API 列表以及每个 API 的使用示例。请参阅<a href="https://javadoc.io/doc/org.gitlab4j/gitlab4j-api" target="_top">Javadocs</a>了解每个子 API 的可用方法的完整列表。
 
 ---
 &nbsp;&nbsp;[ApplicationsApi](#applicationsapi)<br/>
@@ -310,7 +313,7 @@ The following is a list of the available sub APIs along with a sample use of eac
 &nbsp;&nbsp;[WikisApi](#wikisapi)
 
 
-### Sub API Examples
+### 子API例子
 ----------------
 #### ApplicationsApi
 ```java
