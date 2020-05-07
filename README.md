@@ -470,10 +470,10 @@ List<Note> notes = gitLabApi.getNotesApi().getNotes(1234, 1);
 NotificationSettings settings = gitLabApi.getNotificationSettingsApi().getGlobalNotificationSettings();
 ```
 
-#### 25. PackagesApi - 套餐设置
+#### 25. PackagesApi - 大包设置
 ```java
 // Get all packages for the specified project ID
-List<Packages> packages = gitLabApi.getPackagesApi().getPackages(1234);
+List<Package> packages = gitLabApi.getPackagesApi().getPackages(1234);
 ```
 
 #### 26. PipelineApi - 管道信息
@@ -501,7 +501,7 @@ Project projectSpec = new Project()
 Project newProject = gitLabApi.getProjectApi().createProject(projectSpec);
 ```
 
-#### 28. ProtectedBranchesApi - 保护分支设置
+#### 28. ProtectedBranchesApi - 获取项目的保护分支
 ```java
 List<ProtectedBranch> branches = gitLabApi.getProtectedBranchesApi().getProtectedBranches(project.getId());
 ```
@@ -512,7 +512,7 @@ List<ProtectedBranch> branches = gitLabApi.getProtectedBranchesApi().getProtecte
 List<Release> releases = gitLabApi.getReleasesApi().getReleases(projectId);
 ```
 
-#### 30. RepositoryApi - 仓库存储信息
+#### 30. RepositoryApi - 仓库存储分支信息
 ```java
 // Get a list of repository branches from a project, sorted by name alphabetically
 List<Branch> branches = gitLabApi.getRepositoryApi().getBranches(projectId);
